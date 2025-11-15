@@ -19,7 +19,7 @@ subprojects {
     apply(plugin = "java-library")
 
     java {
-        toolchain.languageVersion.set(JavaLanguageVersion.of(8))
+        toolchain.languageVersion = JavaLanguageVersion.of(8)
         withSourcesJar()
     }
 

@@ -1,8 +1,8 @@
 import xyz.jpenilla.resourcefactory.bukkit.BukkitPluginYaml
 
 plugins {
-    id("xyz.jpenilla.resource-factory-bukkit-convention") version "1.3.1"
-    id("xyz.jpenilla.resource-factory-paper-convention") version "1.3.1"
+    alias(libs.plugins.resourceFactoryBukkit)
+    alias(libs.plugins.resourceFactoryPaper)
 }
 
 lateinit var bukkit: BukkitPluginYaml
@@ -22,7 +22,7 @@ paperPluginYaml {
     main = bukkit.main
     apiVersion = "1.20"
     authors = bukkit.authors
-    foliaSupported = false // TODO: true someday
+    foliaSupported = true
 }
 
 @Suppress("VulnerableLibrariesLocal")

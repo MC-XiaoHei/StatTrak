@@ -3,14 +3,14 @@ package cn.xor7.xiaohei.st.impls.bukkit.v1_20_5;
 import cn.xor7.xiaohei.st.api.MinecraftVersion;
 import cn.xor7.xiaohei.st.api.Platform;
 import cn.xor7.xiaohei.st.api.PlatformAdapter;
-import cn.xor7.xiaohei.st.api.VersionedAdapterFactory;
+import cn.xor7.xiaohei.st.api.factory.ModernVersionedAdapterFactory;
 import com.google.auto.service.AutoService;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
 @SuppressWarnings({"rawtypes", "RedundantSuppression"})
-@AutoService(VersionedAdapterFactory.class)
-public class BukkitAdapter_1_20_5_Factory implements VersionedAdapterFactory<JavaPlugin> {
+@AutoService(ModernVersionedAdapterFactory.class)
+public class BukkitAdapter_1_20_5_Factory implements ModernVersionedAdapterFactory<JavaPlugin> {
     @Override
     public Platform getPlatform() {
         return Platform.Bukkit;
@@ -18,19 +18,15 @@ public class BukkitAdapter_1_20_5_Factory implements VersionedAdapterFactory<Jav
 
     @Override
     public boolean isCompatibleWith(@NotNull MinecraftVersion ver) {
-        return isGreaterThanApiVersion(ver) && isLessThanPaperHardForkVersion(ver);
+        return isApiCompatible(ver);
     }
 
     @Override
-    public PlatformAdapter<JavaPlugin> createAdapter(JavaPlugin loader) {
+    public PlatformAdapter createAdapter(JavaPlugin loader) {
         return new BukkitAdapter_1_20_5(loader);
     }
 
-    private boolean isGreaterThanApiVersion(@NotNull MinecraftVersion minecraftVersion) {
-        return minecraftVersion.isGreaterThan(new MinecraftVersion(13, 0));
-    }
-
-    private boolean isLessThanPaperHardForkVersion(@NotNull MinecraftVersion minecraftVersion) {
-        return minecraftVersion.isLessThan(new MinecraftVersion(20, 5));
+    private boolean isApiCompatible(@NotNull MinecraftVersion version) {
+        return version.isGreaterThanOrEqualTo("1.20.5");
     }
 }

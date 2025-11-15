@@ -1,0 +1,8 @@
+{
+    "package": "cn.xor7.xiaohei.st.impls.fabric.v1_14_4.mixins",
+    "refmap": "st.fabric.1.14.4.refmap.json",
+    "target": "@env(DEFAULT)",
+    "mixins": [
+        "TestMixin"
+    ]
+}

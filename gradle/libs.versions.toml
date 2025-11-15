@@ -1,0 +1,14 @@
+[versions]
+fabricApi = "0.28.5"
+fabricLoom = "1.12.5"
+fabricLoader = "0.15.7"
+resourceFactory = "1.3.1"
+
+[libraries]
+fabricLoader = { module = "net.fabricmc:fabric-loader", version.ref = "fabricLoader" }
+
+[plugins]
+fabricLoom = { id = "fabric-loom", version.ref = "fabricLoom" }
+resourceFactoryBukkit = { id = "xyz.jpenilla.resource-factory-bukkit-convention", version.ref = "resourceFactory" }
+resourceFactoryPaper = { id = "xyz.jpenilla.resource-factory-paper-convention", version.ref = "resourceFactory" }
+resourceFactoryFabric = { id = "xyz.jpenilla.resource-factory-fabric-convention", version.ref = "resourceFactory" }

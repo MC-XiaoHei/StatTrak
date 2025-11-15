@@ -41,4 +41,15 @@ if (implementationsDir.exists() && implementationsDir.isDirectory) {
 
 println("Project structure scan complete.")
 
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        mavenCentral()
+        maven("https://maven.neoforged.net/releases")
+        maven("https://repo.papermc.io/repository/maven-public/")
+        maven("https://maven.fabricmc.net/")
+        maven("https://maven.minecraftforge.net/")
+    }
+}
+
 private fun println(message: String) = kotlin.io.println("[root] $message")

@@ -3,14 +3,14 @@ package cn.xor7.xiaohei.st.impls.bukkit.v1_13;
 import cn.xor7.xiaohei.st.api.MinecraftVersion;
 import cn.xor7.xiaohei.st.api.Platform;
 import cn.xor7.xiaohei.st.api.PlatformAdapter;
-import cn.xor7.xiaohei.st.api.VersionedAdapterFactory;
+import cn.xor7.xiaohei.st.api.factory.LegacyVersionedAdapterFactory;
 import com.google.auto.service.AutoService;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
 @SuppressWarnings({"rawtypes", "RedundantSuppression"})
-@AutoService(VersionedAdapterFactory.class)
-public class BukkitAdapter_1_13_Factory implements VersionedAdapterFactory<JavaPlugin> {
+@AutoService(LegacyVersionedAdapterFactory.class)
+public class BukkitAdapter_1_13_Factory implements LegacyVersionedAdapterFactory<JavaPlugin> {
     @Override
     public Platform getPlatform() {
         return Platform.Bukkit;
@@ -18,19 +18,19 @@ public class BukkitAdapter_1_13_Factory implements VersionedAdapterFactory<JavaP
 
     @Override
     public boolean isCompatibleWith(@NotNull MinecraftVersion ver) {
-        return isGreaterThanApiVersion(ver) && isLessThanPaperHardForkVersion(ver);
+        return isApiCompatible(ver) && shouldUseBukkitManifest(ver);
     }
 
     @Override
-    public PlatformAdapter<JavaPlugin> createAdapter(JavaPlugin loader) {
+    public PlatformAdapter createAdapter(JavaPlugin loader) {
         return new BukkitAdapter_1_13(loader);
     }
 
-    private boolean isGreaterThanApiVersion(@NotNull MinecraftVersion minecraftVersion) {
-        return minecraftVersion.isGreaterThan(new MinecraftVersion(13, 0));
+    private boolean isApiCompatible(@NotNull MinecraftVersion version) {
+        return version.isGreaterThanOrEqualTo("1.13");
     }
 
-    private boolean isLessThanPaperHardForkVersion(@NotNull MinecraftVersion minecraftVersion) {
-        return minecraftVersion.isLessThan(new MinecraftVersion(20, 5));
+    private boolean shouldUseBukkitManifest(@NotNull MinecraftVersion version) {
+        return version.isLessThan("1.20.5");
     }
 }

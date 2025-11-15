@@ -1,5 +1,5 @@
 java {
-    toolchain.languageVersion.set(JavaLanguageVersion.of(21))
+    toolchain.languageVersion = JavaLanguageVersion.of(21)
 }
 
 plugins {
@@ -8,5 +8,5 @@ plugins {
 
 dependencies {
     implementation(project(":api"))
-    paperweight.paperDevBundle("1.21.5-R0.1-SNAPSHOT")
+    paperweight.paperDevBundle("1.20.6-R0.1-SNAPSHOT") // some error on 1.20.5 api process, so use 1.20.6 dev bundle
 }

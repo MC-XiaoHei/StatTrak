@@ -3,7 +3,7 @@ package cn.xor7.xiaohei.st.impls.bukkit.v1_13;
 import cn.xor7.xiaohei.st.api.PlatformAdapter;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class BukkitAdapter_1_13 implements PlatformAdapter<JavaPlugin> {
+public class BukkitAdapter_1_13 implements PlatformAdapter {
     private final JavaPlugin plugin;
 
     public BukkitAdapter_1_13(JavaPlugin plugin) {
@@ -11,7 +11,7 @@ public class BukkitAdapter_1_13 implements PlatformAdapter<JavaPlugin> {
     }
 
     @Override
-    public void initialize(JavaPlugin loader) {
+    public void initialize() {
         plugin.getLogger().info("StatTrak Bukkit Adapter for Minecraft 1.13 initialized.");
     }
 

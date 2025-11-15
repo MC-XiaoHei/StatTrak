@@ -1,8 +1,20 @@
 package cn.xor7.xiaohei.st.api;
 
-public interface PlatformAdapter<T> {
+import java.util.ArrayList;
+import java.util.Collection;
 
-    void initialize(T loader);
+public interface PlatformAdapter {
 
-    void shutdown();
+    void initialize();
+
+    @SuppressWarnings("unused")
+    default void setMinecraftVersion(MinecraftVersion version) {
+    }
+
+    default Collection<String> getMixinConfigs() {
+        return new ArrayList<>();
+    }
+
+    default void shutdown() {
+    }
 }
