@@ -1,20 +1,36 @@
 plugins {
-    id("java")
+    `java-base`
 }
 
-group = "cn.xor7.xiaohei"
-version = "1.0-SNAPSHOT"
+allprojects {
+    group = "cn.xor7.xiaohei"
+    version = "1.0-SNAPSHOT"
 
-repositories {
-    mavenCentral()
+    repositories {
+        mavenCentral()
+        maven("https://repo.papermc.io/repository/maven-public/")
+        maven("https://maven.fabricmc.net/")
+        maven("https://maven.neoforged.net/releases")
+        maven("https://maven.minecraftforge.net/")
+    }
 }
 
-dependencies {
-    testImplementation(platform("org.junit:junit-bom:5.10.0"))
-    testImplementation("org.junit.jupiter:junit-jupiter")
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-}
+subprojects {
+    apply(plugin = "java-library")
 
-tasks.test {
-    useJUnitPlatform()
+    java {
+        toolchain.languageVersion.set(JavaLanguageVersion.of(8))
+        withSourcesJar()
+    }
+
+    tasks.withType<JavaCompile> {
+        options.encoding = "UTF-8"
+    }
+
+    if (project.path.startsWith(":impls:")) afterEvaluate {
+        dependencies {
+            "annotationProcessor"("com.google.auto.service:auto-service:1.1.1")
+            "compileOnly"("com.google.auto.service:auto-service-annotations:1.1.1")
+        }
+    }
 }
