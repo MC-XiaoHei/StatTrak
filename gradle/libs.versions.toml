@@ -1,7 +1,9 @@
 [versions]
 fabricApi = "0.28.5"
-fabricLoom = "1.12.5"
 fabricLoader = "0.15.7"
+fabricLoom = "1.12.5"
+paperweightUserdev = "2.0.0-beta.19"
+neoforgeModdev = "2.0.116"
 resourceFactory = "1.3.1"
 
 [libraries]
@@ -9,6 +11,9 @@ fabricLoader = { module = "net.fabricmc:fabric-loader", version.ref = "fabricLoa
 
 [plugins]
 fabricLoom = { id = "fabric-loom", version.ref = "fabricLoom" }
+neoforgeModdev = { id = "net.neoforged.moddev", version.ref = "neoforgeModdev" }
+paperweightUserdev = { id = "io.papermc.paperweight.userdev", version.ref = "paperweightUserdev" }
 resourceFactoryBukkit = { id = "xyz.jpenilla.resource-factory-bukkit-convention", version.ref = "resourceFactory" }
 resourceFactoryPaper = { id = "xyz.jpenilla.resource-factory-paper-convention", version.ref = "resourceFactory" }
 resourceFactoryFabric = { id = "xyz.jpenilla.resource-factory-fabric-convention", version.ref = "resourceFactory" }
+resourceFactoryNeoforge = { id = "xyz.jpenilla.resource-factory-neoforge-convention", version.ref = "resourceFactory" }

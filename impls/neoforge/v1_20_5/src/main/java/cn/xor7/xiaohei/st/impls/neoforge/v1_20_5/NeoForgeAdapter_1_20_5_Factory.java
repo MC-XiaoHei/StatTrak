@@ -1,29 +1,28 @@
-package cn.xor7.xiaohei.st.impls.bukkit.v1_20_5;
+package cn.xor7.xiaohei.st.impls.neoforge.v1_20_5;
 
 import cn.xor7.xiaohei.st.api.MinecraftVersion;
 import cn.xor7.xiaohei.st.api.Platform;
 import cn.xor7.xiaohei.st.api.PlatformAdapter;
 import cn.xor7.xiaohei.st.api.factory.J21VersionedAdapterFactory;
 import com.google.auto.service.AutoService;
-import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
 @SuppressWarnings({"rawtypes", "RedundantSuppression"})
 @AutoService(J21VersionedAdapterFactory.class)
-public class BukkitAdapter_1_20_5_Factory implements J21VersionedAdapterFactory<JavaPlugin> {
+public class NeoForgeAdapter_1_20_5_Factory implements J21VersionedAdapterFactory<Object> {
     @Override
     public Platform getPlatform() {
-        return Platform.Bukkit;
+        return Platform.NeoForge;
     }
 
     @Override
-    public boolean isCompatibleWith(@NotNull MinecraftVersion ver) {
+    public boolean isCompatibleWith(MinecraftVersion ver) {
         return isApiCompatible(ver);
     }
 
     @Override
-    public PlatformAdapter createAdapter(JavaPlugin loader) {
-        return new BukkitAdapter_1_20_5(loader);
+    public PlatformAdapter createAdapter(Object ignored) {
+        return new NeoForgeAdapter_1_20_5();
     }
 
     private boolean isApiCompatible(@NotNull MinecraftVersion version) {

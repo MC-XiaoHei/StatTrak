@@ -1,3 +1,5 @@
+group = "bukkit"
+version = "bukkit"
 
 @Suppress("VulnerableLibrariesLocal")
 dependencies {

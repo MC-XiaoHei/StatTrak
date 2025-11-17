@@ -10,7 +10,7 @@ import static cn.xor7.xiaohei.st.api.AdapterUtils.createAdapter;
 
 @SuppressWarnings("unused")
 public final class StatTrakBukkitEntry extends JavaPlugin {
-    private PlatformAdapter platformAdapter;
+    private static PlatformAdapter platformAdapter;
 
     @Override
     public void onLoad() {

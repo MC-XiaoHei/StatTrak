@@ -1,5 +1,8 @@
 @file:Suppress("UnstableApiUsage")
 
+group = "fabric"
+version = "fabric"
+
 val minecraftVersion = "1.14.4"
 
 plugins {

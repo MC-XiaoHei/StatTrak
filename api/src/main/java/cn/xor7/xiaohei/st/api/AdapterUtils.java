@@ -1,7 +1,8 @@
 package cn.xor7.xiaohei.st.api;
 
-import cn.xor7.xiaohei.st.api.factory.LegacyVersionedAdapterFactory;
-import cn.xor7.xiaohei.st.api.factory.ModernVersionedAdapterFactory;
+import cn.xor7.xiaohei.st.api.factory.J17VersionedAdapterFactory;
+import cn.xor7.xiaohei.st.api.factory.J8VersionedAdapterFactory;
+import cn.xor7.xiaohei.st.api.factory.J21VersionedAdapterFactory;
 import cn.xor7.xiaohei.st.api.factory.VersionedAdapterFactory;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -17,12 +18,18 @@ public class AdapterUtils {
         Platform platform,
         T loader
     ) {
-        ServiceLoader<LegacyVersionedAdapterFactory> legacyFactories = ServiceLoader.load(LegacyVersionedAdapterFactory.class, classLoader);
-        PlatformAdapter adapter = getPlatformAdapter(version, platform, loader, legacyFactories);
+        PlatformAdapter adapter;
+
+        ServiceLoader<J8VersionedAdapterFactory> j8Factories = ServiceLoader.load(J8VersionedAdapterFactory.class, classLoader);
+        adapter = getPlatformAdapter(version, platform, loader, j8Factories);
         if (adapter != null) return adapter;
 
-        ServiceLoader<ModernVersionedAdapterFactory> modernFactories = ServiceLoader.load(ModernVersionedAdapterFactory.class, classLoader);
-        adapter = getPlatformAdapter(version, platform, loader, modernFactories);
+        ServiceLoader<J17VersionedAdapterFactory> j17Factories = ServiceLoader.load(J17VersionedAdapterFactory.class, classLoader);
+        adapter = getPlatformAdapter(version, platform, loader, j17Factories);
+        if (adapter != null) return adapter;
+
+        ServiceLoader<J21VersionedAdapterFactory> j21Factories = ServiceLoader.load(J21VersionedAdapterFactory.class, classLoader);
+        adapter = getPlatformAdapter(version, platform, loader, j21Factories);
         if (adapter != null) return adapter;
 
         throw new IllegalStateException("No compatible adapter factory found for platform " + platform + " and version " + version);
